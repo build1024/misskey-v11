@@ -36,6 +36,9 @@ dependencies:
   '@koa/router':
     specifier: 8.0.8
     version: 8.0.8
+  '@peertube/http-signature':
+    specifier: 1.7.0
+    version: 1.7.0
   '@swc/core':
     specifier: 1.3.39
     version: 1.3.39
@@ -168,9 +171,6 @@ dependencies:
   http-proxy-agent:
     specifier: 5.0.0
     version: 5.0.0
-  http-signature:
-    specifier: 1.3.6
-    version: 1.3.6
   https-proxy-agent:
     specifier: 5.0.1
     version: 5.0.1
@@ -358,11 +358,11 @@ dependencies:
     specifier: 0.32.6
     version: 0.32.6
   showdown:
-    specifier: 2.1.0
-    version: 2.1.0
+    specifier: 1.5.5
+    version: 1.5.5
   showdown-highlightjs-extension:
     specifier: 0.1.2
-    version: 0.1.2(showdown@2.1.0)
+    version: 0.1.2(showdown@1.5.5)
   speakeasy:
     specifier: 2.0.0
     version: 2.0.0
@@ -1051,6 +1051,15 @@ packages:
       node-fetch: 2.7.0
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /@peertube/http-signature@1.7.0:
+    resolution: {integrity: sha512-aGQIwo6/sWtyyqhVK4e1MtxYz4N1X8CNt6SOtCc+Wnczs5S5ONaLHDDR8LYaGn0MgOwvGgXyuZ5sJIfd7iyoUw==}
+    engines: {node: '>=0.10'}
+    dependencies:
+      assert-plus: 1.0.0
+      jsprim: 1.4.2
+      sshpk: 1.17.0
     dev: false
 
   /@redocly/ajv@8.11.0:
@@ -2828,6 +2837,11 @@ packages:
       upper-case: 1.1.3
     dev: false
 
+  /camelcase@2.1.1:
+    resolution: {integrity: sha512-DLIsRzJVBQu72meAKPkWQOLcujdXT32hwdfnkI1frSiSRMK1MofjKHf+MEx0SB6fjEFXL8fBDv1dKymBlOp4Qw==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /camelcase@3.0.0:
     resolution: {integrity: sha512-4nhGqUkc4BqbBBB4Q6zLuD7lzzrHYrjKGeYaEji/3tFR5VdJu9v+LilhGIVe8wxEJPPOeWo7eg8dwY13TZ1BNg==}
     engines: {node: '>=0.10.0'}
@@ -3223,11 +3237,6 @@ packages:
   /commander@8.3.0:
     resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
     engines: {node: '>= 12'}
-    dev: false
-
-  /commander@9.5.0:
-    resolution: {integrity: sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==}
-    engines: {node: ^12.20.0 || >=14}
     dev: false
 
   /commondir@1.0.1:
@@ -5640,15 +5649,6 @@ packages:
       - supports-color
     dev: false
 
-  /http-signature@1.3.6:
-    resolution: {integrity: sha512-3adrsD6zqo4GsTqtO7FyrejHNv+NgiIfAfv68+jVlFmSr9OGy7zrxONceFRLKvnnZA5jbxQBX1u9PpB6Wi32Gw==}
-    engines: {node: '>=0.10'}
-    dependencies:
-      assert-plus: 1.0.0
-      jsprim: 2.0.2
-      sshpk: 1.17.0
-    dev: false
-
   /http2-wrapper@1.0.3:
     resolution: {integrity: sha512-V+23sDMr12Wnz7iTcDeJr3O6AIxlnvT/bmaAAAP/Xda35C90p9599p0F1eHR/N1KILWSoWVAiOMFjBBXaXSMxg==}
     engines: {node: '>=10.19.0'}
@@ -6415,9 +6415,9 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /jsprim@2.0.2:
-    resolution: {integrity: sha512-gqXddjPqQ6G40VdnI6T6yObEC+pDNvyP95wdQhkWkg7crHH3km5qP1FsOXEkzEQwnz6gz5qGTn1c2Y52wP3OyQ==}
-    engines: {'0': node >=0.6.0}
+  /jsprim@1.4.2:
+    resolution: {integrity: sha512-P2bSOMAc/ciLz6DzgjVlGJP9+BrJWu5UDGK70C2iweC5QBIeFf0ZXRvGjEj2uYgrY2MkAAhsSWHDWlFtEroZWw==}
+    engines: {node: '>=0.6.0'}
     dependencies:
       assert-plus: 1.0.0
       extsprintf: 1.3.0
@@ -9244,20 +9244,20 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  /showdown-highlightjs-extension@0.1.2(showdown@2.1.0):
+  /showdown-highlightjs-extension@0.1.2(showdown@1.5.5):
     resolution: {integrity: sha512-hFEteWxV22K6fdUh1jpIZhBzVgWi1iBpBP7M1UrjaUcWX+LPOWqAzsCSiKbwUvyzRHCmGWV1j1O0DOe4t23yFQ==}
     peerDependencies:
       showdown: ^1.5.5
     dependencies:
       highlightjs: 9.16.2
-      showdown: 2.1.0
+      showdown: 1.5.5
     dev: false
 
-  /showdown@2.1.0:
-    resolution: {integrity: sha512-/6NVYu4U819R2pUIk79n67SYgJHWCce0a5xTP979WbNp0FL9MN1I1QK662IDU1b6JzKTvmhgI7T7JYIxBi3kMQ==}
+  /showdown@1.5.5:
+    resolution: {integrity: sha512-MXo8yBf1LbUI+6JFQaN7llpRe1e0bGmaM8gqyZ/s/7yJIEsDyyNjHqTi0ZJEg97pwEE4utt3BZ13ymZn66ohAw==}
     hasBin: true
     dependencies:
-      commander: 9.5.0
+      yargs: 3.32.0
     dev: false
 
   /shvl@2.0.3:
@@ -11053,6 +11053,12 @@ packages:
   /wildcard@2.0.0:
     resolution: {integrity: sha512-JcKqAHLPxcdb9KM49dufGXn2x3ssnfjbcaQdLlfZsL9rH9wgDQjUtDxbo8NE0F6SFvydeu1VhZe7hZuHsB2/pw==}
 
+  /window-size@0.1.4:
+    resolution: {integrity: sha512-2thx4pB0cV3h+Bw7QmMXcEbdmOzv9t0HFplJH/Lz6yu60hXYy5RT8rUu+wlIreVxWsGN20mo+MHeCSfUpQBwPw==}
+    engines: {node: '>= 0.10.0'}
+    hasBin: true
+    dev: false
+
   /with@7.0.2:
     resolution: {integrity: sha512-RNGKj82nUPg3g5ygxkQl0R937xLyho1J24ItRCBTr/m1YnZkzJy1hUiHUJrc/VlsDQzsCnInEGSg3bci0Lmd4w==}
     engines: {node: '>= 10.0.0'}
@@ -11277,6 +11283,18 @@ packages:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 21.1.1
+    dev: false
+
+  /yargs@3.32.0:
+    resolution: {integrity: sha512-ONJZiimStfZzhKamYvR/xvmgW3uEkAUFSP91y2caTEPhzF6uP2JfPiVZcq66b/YR0C3uitxSV7+T1x8p5bkmMg==}
+    dependencies:
+      camelcase: 2.1.1
+      cliui: 3.2.0
+      decamelize: 1.2.0
+      os-locale: 1.4.0
+      string-width: 1.0.2
+      window-size: 0.1.4
+      y18n: 3.2.2
     dev: false
 
   /yargs@7.1.2:
