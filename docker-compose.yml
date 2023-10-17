@@ -3,6 +3,8 @@ version: "3"
 services:
   web:
     build: .
+    image: misskey-v11-app
+    container_name: misskey_v11_app
     restart: always
     links:
       - db
@@ -19,7 +21,8 @@ services:
 
   redis:
     restart: always
-    image: redis:4.0-alpine
+    container_name: misskey_v11_redis
+    image: redis:7.0-alpine
     networks:
       - internal_network
     volumes:
@@ -27,7 +30,8 @@ services:
 
   db:
     restart: always
-    image: postgres:11.2-alpine
+    container_name: misskey_v11_db
+    image: postgres:15.4-alpine3.18
     networks:
       - internal_network
     env_file:
