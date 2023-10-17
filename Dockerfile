@@ -34,9 +34,9 @@ COPY --from=builder --chown=misskey:misskey /misskey/built ./built
 COPY --chown=misskey:misskey assets/ ./assets/
 COPY --chown=misskey:misskey locales/ ./locales/
 COPY --chown=misskey:misskey migration/ ./migration/
-COPY --chown=misskey:misskey LICENSE gulpfile.js index.js ormconfig.js package.json pnpm-lock.yaml renovate.json ./
+COPY --chown=misskey:misskey LICENSE docker-entrypoint.sh gulpfile.js index.js ormconfig.js package.json pnpm-lock.yaml renovate.json ./
 
 USER misskey
 ENV NODE_ENV=production
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["pnpm", "migrateandstart"]
+CMD ["./docker-entrypoint.sh"]
