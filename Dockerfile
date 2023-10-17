@@ -25,13 +25,18 @@ WORKDIR /misskey
 RUN apk add --no-cache tini ffmpeg
 RUN corepack enable pnpm
 
-COPY --from=builder /misskey/node_modules ./node_modules
-COPY --from=builder /misskey/built ./built
-COPY assets/ ./assets/
-COPY locales/ ./locales/
-COPY migration/ ./migration/
-COPY LICENSE gulpfile.js index.js ormconfig.js package.json pnpm-lock.yaml renovate.json ./
+# Add local user
+RUN addgroup -g 60002 misskey && adduser -S -s /bin/false -u 60002 -h /misskey -G misskey misskey \
+    && chmod 700 /misskey && chown misskey:misskey /misskey
 
+COPY --from=builder --chown=misskey:misskey /misskey/node_modules ./node_modules
+COPY --from=builder --chown=misskey:misskey /misskey/built ./built
+COPY --chown=misskey:misskey assets/ ./assets/
+COPY --chown=misskey:misskey locales/ ./locales/
+COPY --chown=misskey:misskey migration/ ./migration/
+COPY --chown=misskey:misskey LICENSE gulpfile.js index.js ormconfig.js package.json pnpm-lock.yaml renovate.json ./
+
+USER misskey
 ENV NODE_ENV=production
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["pnpm", "migrateandstart"]
