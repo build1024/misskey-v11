@@ -12,7 +12,6 @@ import wPhotoStream from './photo-stream.vue';
 import wSlideshow from './slideshow.vue';
 import wTips from './tips.vue';
 import wNav from './nav.vue';
-import wHashtags from './hashtags.vue';
 import wInstance from './instance.vue';
 import wPostForm from './post-form.vue';
 
@@ -28,7 +27,6 @@ Vue.component('mkw-posts-monitor', wPostsMonitor);
 Vue.component('mkw-memo', wMemo);
 Vue.component('mkw-rss', wRss);
 Vue.component('mkw-version', wVersion);
-Vue.component('mkw-hashtags', wHashtags);
 Vue.component('mkw-instance', wInstance);
 Vue.component('mkw-post-form', wPostForm);
 Vue.component('mkw-queue', () => import('./queue.vue').then(m => m.default));

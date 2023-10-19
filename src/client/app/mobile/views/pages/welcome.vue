@@ -16,9 +16,6 @@
 		<div class="tl">
 			<mk-welcome-timeline/>
 		</div>
-		<div class="hashtags">
-			<mk-tag-cloud/>
-		</div>
 		<div class="photos">
 			<div v-for="photo in photos" :style="`background-image: url(${photo.thumbnailUrl})`"></div>
 		</div>
@@ -206,10 +203,6 @@ export default Vue.extend({
 				border-radius 6px
 				overflow auto
 				-webkit-overflow-scrolling touch
-
-		> .hashtags
-			padding 0 8px
-			height 200px
 
 		> .photos
 			display grid
