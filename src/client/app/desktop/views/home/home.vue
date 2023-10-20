@@ -12,7 +12,6 @@
 						<option value="calendar">{{ $t('@.widgets.calendar') }}</option>
 						<option value="timemachine">{{ $t('@.widgets.timemachine') }}</option>
 						<option value="activity">{{ $t('@.widgets.activity') }}</option>
-						<option value="rss">{{ $t('@.widgets.rss') }}</option>
 						<option value="photo-stream">{{ $t('@.widgets.photo-stream') }}</option>
 						<option value="slideshow">{{ $t('@.widgets.slideshow') }}</option>
 						<option value="version">{{ $t('@.widgets.version') }}</option>
@@ -141,7 +140,6 @@ export default Vue.extend({
 					'profile',
 					'calendar',
 					'activity',
-					'rss',
 					'photo-stream',
 					'version'
 				],

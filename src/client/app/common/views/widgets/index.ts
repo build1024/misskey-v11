@@ -2,7 +2,6 @@ import Vue from 'vue';
 
 import wAnalogClock from './analog-clock.vue';
 import wVersion from './version.vue';
-import wRss from './rss.vue';
 import wServer from './server.vue';
 import wPostsMonitor from './posts-monitor.vue';
 import wMemo from './memo.vue';
@@ -25,7 +24,6 @@ Vue.component('mkw-broadcast', wBroadcast);
 Vue.component('mkw-server', wServer);
 Vue.component('mkw-posts-monitor', wPostsMonitor);
 Vue.component('mkw-memo', wMemo);
-Vue.component('mkw-rss', wRss);
 Vue.component('mkw-version', wVersion);
 Vue.component('mkw-instance', wInstance);
 Vue.component('mkw-post-form', wPostForm);
