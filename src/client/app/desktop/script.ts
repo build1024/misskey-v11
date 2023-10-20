@@ -187,7 +187,6 @@ init(async (launch, os) => {
 			{ path: '/i/settings', redirect: '/i/settings/profile' },
 			{ path: '/i/settings/:page', component: MkSettings },
 			{ path: '/selectdrive', component: MkSelectDrive },
-			{ path: '/@:acct/room', props: true, component: () => import('../common/views/pages/room/room.vue').then(m => m.default) },
 			{ path: '/share', component: MkShare },
 			{ path: '/games/reversi/:game?', component: MkReversi },
 			{ path: '/authorize-follow', component: MkFollow },
