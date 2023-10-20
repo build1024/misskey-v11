@@ -27,13 +27,6 @@ export default function(type, data): Notification {
 				icon: data.user.avatarUrl
 			};
 
-		case 'reversiInvited':
-			return {
-				title: 'Play reversi with me',
-				body: `You got reversi invitation from ${getUserName(data.parent)}`,
-				icon: data.parent.avatarUrl
-			};
-
 		case 'notification':
 			const notification = data as any;	// TODO: PackedNotification
 			switch (notification.type) {

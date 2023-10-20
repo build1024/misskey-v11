@@ -103,10 +103,6 @@
 					<option value="8">{{ $t('@._settings.deckTemporaryColumnIndex-8') }}</option>
 				</ui-select>
 			</section>
-			<section>
-				<ui-switch v-model="games_reversi_showBoardLabels">{{ $t('@._settings.show-reversi-board-labels') }}</ui-switch>
-				<ui-switch v-model="games_reversi_useAvatarStones">{{ $t('@._settings.use-avatar-reversi-stones') }}</ui-switch>
-			</section>
 		</ui-card>
 	</template>
 
@@ -563,16 +559,6 @@ export default Vue.extend({
 		roomGraphicsQuality: {
 			get() { return this.$store.state.device.roomGraphicsQuality; },
 			set(value) { this.$store.commit('device/set', { key: 'roomGraphicsQuality', value }); }
-		},
-
-		games_reversi_showBoardLabels: {
-			get() { return this.$store.state.settings.gamesReversiShowBoardLabels; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'gamesReversiShowBoardLabels', value }); }
-		},
-
-		games_reversi_useAvatarStones: {
-			get() { return this.$store.state.settings.gamesReversiUseAvatarStones; },
-			set(value) { this.$store.dispatch('settings/set', { key: 'gamesReversiUseAvatarStones', value }); }
 		},
 
 		disableAnimatedMfm: {

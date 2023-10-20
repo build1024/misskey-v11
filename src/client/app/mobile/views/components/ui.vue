@@ -63,8 +63,6 @@ export default Vue.extend({
 			this.connection = this.$root.stream.useSharedConnection('main');
 
 			this.connection.on('notification', this.onNotification);
-			this.connection.on('reversiInvited', this.onReversiInvited);
-			this.connection.on('reversiNoInvites', this.onReversiNoInvites);
 		}
 	},
 
@@ -84,14 +82,6 @@ export default Vue.extend({
 			this.$root.new(MkNotify, {
 				notification
 			});
-		},
-
-		onReversiInvited() {
-			this.hasGameInvitation = true;
-		},
-
-		onReversiNoInvites() {
-			this.hasGameInvitation = false;
 		}
 	}
 });

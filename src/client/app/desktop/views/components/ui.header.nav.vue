@@ -10,13 +10,6 @@
 		<li class="explore" :class="{ active: $route.name == 'explore' || $route.name == 'explore-tag' }">
 			<router-link to="/explore"><fa :icon="faHashtag"/><p>{{ $t('@.explore') }}</p></router-link>
 		</li>
-		<li class="game">
-			<a @click="game">
-				<fa icon="gamepad"/>
-				<p>{{ $t('game') }}</p>
-				<template v-if="hasGameInvitations"><fa icon="circle"/></template>
-			</a>
-		</li>
 	</ul>
 </div>
 </template>
@@ -24,7 +17,6 @@
 <script lang="ts">
 import Vue from 'vue';
 import i18n from '../../../i18n';
-import MkGameWindow from './game-window.vue';
 import { faNewspaper, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
@@ -39,9 +31,6 @@ export default Vue.extend({
 	mounted() {
 		if (this.$store.getters.isSignedIn) {
 			this.connection = this.$root.stream.useSharedConnection('main');
-
-			this.connection.on('reversiInvited', this.onReversiInvited);
-			this.connection.on('reversiNoInvites', this.onReversiNoInvites);
 		}
 	},
 	beforeDestroy() {
@@ -50,18 +39,6 @@ export default Vue.extend({
 		}
 	},
 	methods: {
-		onReversiInvited() {
-			this.hasGameInvitations = true;
-		},
-
-		onReversiNoInvites() {
-			this.hasGameInvitations = false;
-		},
-
-		game() {
-			this.$root.new(MkGameWindow);
-		},
-
 		goToTop() {
 			window.scrollTo({
 				top: 0,

@@ -15,9 +15,6 @@
 			<div class="explore" :class="{ active: $route.name == 'explore' || $route.name == 'explore-tag' }">
 				<router-link to="/explore"><fa :icon="faHashtag"/></router-link>
 			</div>
-			<div class="game">
-				<a @click="game"><fa icon="gamepad"/><template v-if="hasGameInvitations"><fa icon="circle"/></template></a>
-			</div>
 		</div>
 
 		<div class="nav bottom" v-if="$store.getters.isSignedIn">
@@ -77,7 +74,6 @@ import Vue from 'vue';
 import i18n from '../../../i18n';
 import MkDriveWindow from './drive-window.vue';
 import MkMessagingWindow from './messaging-window.vue';
-import MkGameWindow from './game-window.vue';
 import contains from '../../../common/scripts/contains';
 import { faNewspaper, faHashtag } from '@fortawesome/free-solid-svg-icons';
 
@@ -85,7 +81,6 @@ export default Vue.extend({
 	i18n: i18n('desktop/views/components/ui.sidebar.vue'),
 	data() {
 		return {
-			hasGameInvitations: false,
 			connection: null,
 			showNotifications: false,
 			searching: false,
@@ -106,9 +101,6 @@ export default Vue.extend({
 	mounted() {
 		if (this.$store.getters.isSignedIn) {
 			this.connection = this.$root.stream.useSharedConnection('main');
-
-			this.connection.on('reversiInvited', this.onReversiInvited);
-			this.connection.on('reversiNoInvites', this.onReversiNoInvites);
 		}
 	},
 
@@ -124,20 +116,8 @@ export default Vue.extend({
 			location.replace('/');
 		},
 
-		onReversiInvited() {
-			this.hasGameInvitations = true;
-		},
-
-		onReversiNoInvites() {
-			this.hasGameInvitations = false;
-		},
-
 		messaging() {
 			this.$root.new(MkMessagingWindow);
-		},
-
-		game() {
-			this.$root.new(MkGameWindow);
 		},
 
 		post() {

@@ -20,7 +20,6 @@ import MkMessagingRoom from './views/pages/messaging-room.vue';
 import MkNote from './views/pages/note.vue';
 import MkSearch from './views/pages/search.vue';
 import UI from './views/pages/ui.vue';
-import MkReversi from './views/pages/games/reversi.vue';
 import MkTag from './views/pages/tag.vue';
 import MkShare from '../common/views/pages/share.vue';
 import MkFollow from '../common/views/pages/follow.vue';
@@ -165,7 +164,6 @@ init((launch, os) => {
 			{ path: '/explore', name: 'explore', component: UI, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default) }) },
 			{ path: '/explore/tags/:tag', name: 'explore-tag', component: UI, props: route => ({ component: () => import('../common/views/pages/explore.vue').then(m => m.default), tag: route.params.tag }) },
 			{ path: '/share', component: MkShare },
-			{ path: '/games/reversi/:game?', name: 'reversi', component: MkReversi },
 			{ path: '/@:user', name: 'user', component: () => import('./views/pages/user/index.vue').then(m => m.default), children: [
 				{ path: 'following', component: () => import('../common/views/pages/following.vue').then(m => m.default) },
 				{ path: 'followers', component: () => import('../common/views/pages/followers.vue').then(m => m.default) },

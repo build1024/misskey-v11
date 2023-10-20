@@ -15,7 +15,6 @@ import MkHome from './views/home/home.vue';
 import MkSelectDrive from './views/pages/selectdrive.vue';
 import MkDrive from './views/pages/drive.vue';
 import MkMessagingRoom from './views/pages/messaging-room.vue';
-import MkReversi from './views/pages/games/reversi.vue';
 import MkShare from '../common/views/pages/share.vue';
 import MkFollow from '../common/views/pages/follow.vue';
 import MkNotFound from '../common/views/pages/not-found.vue';
@@ -188,7 +187,6 @@ init(async (launch, os) => {
 			{ path: '/i/settings/:page', component: MkSettings },
 			{ path: '/selectdrive', component: MkSelectDrive },
 			{ path: '/share', component: MkShare },
-			{ path: '/games/reversi/:game?', component: MkReversi },
 			{ path: '/authorize-follow', component: MkFollow },
 			{ path: '/deck', redirect: '/' },
 			{ path: '*', component: MkNotFound }
@@ -254,13 +252,5 @@ function registerNotifications(os: MiOS) {
 			});*/
 		};
 		setTimeout(n.close.bind(n), 7000);
-	});
-
-	connection.on('reversiInvited', matching => {
-		const _n = composeNotification('reversiInvited', matching);
-		const n = new Notification(_n.title, {
-			body: _n.body,
-			icon: _n.icon
-		});
 	});
 }

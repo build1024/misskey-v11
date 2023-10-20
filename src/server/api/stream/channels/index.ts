@@ -13,8 +13,6 @@ import drive from './drive';
 import hashtag from './hashtag';
 import apLog from './ap-log';
 import admin from './admin';
-import gamesReversi from './games/reversi';
-import gamesReversiGame from './games/reversi-game';
 
 export default {
 	main,
@@ -31,7 +29,5 @@ export default {
 	drive,
 	hashtag,
 	apLog,
-	admin,
-	gamesReversi,
-	gamesReversiGame
+	admin
 };
