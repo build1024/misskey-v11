@@ -4,7 +4,7 @@ ENV NODE_ENV=production
 WORKDIR /misskey
 
 RUN apk add --no-cache \
-    autoconf automake file g++ gcc libc-dev libtool make \
+    autoconf automake file git g++ gcc libc-dev libtool make \
     nasm pkgconfig python3 zlib-dev
 
 COPY package.json pnpm-lock.yaml ./
@@ -14,7 +14,7 @@ RUN corepack enable pnpm
 RUN pnpm i --frozen-lockfile
 
 COPY . ./
-RUN pnpm build
+RUN npx update-browserslist-db@latest && pnpm build
 
 #########################################
 FROM node:18.18.1-alpine3.18 AS runner
