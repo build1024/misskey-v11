@@ -11,10 +11,13 @@ COPY package.json pnpm-lock.yaml ./
 
 RUN corepack enable pnpm
 
-RUN pnpm i --frozen-lockfile
+RUN pnpm i --frozen-lockfile && npx update-browserslist-db@latest
 
-COPY . ./
-RUN npx update-browserslist-db@latest && pnpm build
+COPY .eslintrc.json .mocharc.json .npmrc .swcrc gulpfile.js index.js ormconfig.js tsconfig.json webpack.config.js ./
+COPY assets/ ./assets/
+COPY locales/ ./locales/
+COPY src/ ./src/
+RUN pnpm build
 
 #########################################
 FROM node:18.18.1-alpine3.18 AS runner
@@ -31,7 +34,6 @@ RUN addgroup -g 60002 misskey && adduser -S -s /bin/false -u 60002 -h /misskey -
 
 COPY --from=builder --chown=misskey:misskey /misskey/node_modules ./node_modules
 COPY --from=builder --chown=misskey:misskey /misskey/built ./built
-COPY --chown=misskey:misskey assets/ ./assets/
 COPY --chown=misskey:misskey locales/ ./locales/
 COPY --chown=misskey:misskey migration/ ./migration/
 COPY --chown=misskey:misskey LICENSE docker-entrypoint.sh gulpfile.js index.js ormconfig.js package.json pnpm-lock.yaml renovate.json ./
