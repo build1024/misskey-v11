@@ -5,11 +5,11 @@ WORKDIR /misskey
 
 RUN apk add --no-cache \
     autoconf automake file git g++ gcc libc-dev libtool make \
-    nasm pkgconfig python3 zlib-dev
+    nasm pkgconfig python3 tzdata zlib-dev \
+    && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
+    && corepack enable pnpm
 
 COPY package.json pnpm-lock.yaml ./
-
-RUN corepack enable pnpm
 
 RUN pnpm i --frozen-lockfile && npx update-browserslist-db@latest
 
@@ -32,6 +32,7 @@ RUN corepack enable pnpm
 RUN addgroup -g 60002 misskey && adduser -S -s /bin/false -u 60002 -h /misskey -G misskey misskey \
     && chmod 700 /misskey && chown misskey:misskey /misskey
 
+COPY --from=builder /etc/localtime /etc/localtime
 COPY --from=builder --chown=misskey:misskey /misskey/node_modules ./node_modules
 COPY --from=builder --chown=misskey:misskey /misskey/built ./built
 COPY --chown=misskey:misskey locales/ ./locales/
