@@ -1,4 +1,5 @@
-FROM node:18.18.1-alpine3.18 AS builder-base
+FROM node:18.18.2-alpine3.18 AS builder-base
+
 ENV NODE_ENV=production
 
 WORKDIR /misskey
@@ -27,7 +28,7 @@ RUN corepack enable pnpm
 RUN pnpm i --frozen-lockfile
 
 #########################################
-FROM node:18.18.1-alpine3.18 AS runner
+FROM node:18.18.2-alpine3.18 AS runner
 ENV NODE_ENV=production
 
 WORKDIR /misskey

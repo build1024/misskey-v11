@@ -75,7 +75,7 @@ import i18n from '../../../i18n';
 import MkDriveWindow from './drive-window.vue';
 import MkMessagingWindow from './messaging-window.vue';
 import contains from '../../../common/scripts/contains';
-import { faNewspaper, faHashtag } from '@fortawesome/free-solid-svg-icons';
+import { faNewspaper, faHashtag, faStickyNote, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 
 export default Vue.extend({
 	i18n: i18n('desktop/views/components/ui.sidebar.vue'),
@@ -84,7 +84,7 @@ export default Vue.extend({
 			connection: null,
 			showNotifications: false,
 			searching: false,
-			faNewspaper, faHashtag
+			faNewspaper, faHashtag, faStickyNote, faDoorOpen
 		};
 	},
 

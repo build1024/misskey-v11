@@ -1,7 +1,7 @@
 {
 	"name": "misskey",
 	"author": "mei23 <m@m544.net>",
-	"version": "11.37.1-20230930181843",
+	"version": "11.37.1-20231227020351",
 	"codename": "daybreak",
 	"repository": {
 		"type": "git",
@@ -73,6 +73,7 @@
 		"cbor": "8.1.0",
 		"chalk": "4.1.2",
 		"cli-highlight": "2.1.11",
+		"co-body": "6.1.0",
 		"content-disposition": "0.5.4",
 		"cropperjs": "1.5.13",
 		"cross-env": "7.0.3",
@@ -104,7 +105,6 @@
 		"koa": "2.13.4",
 		"koa-bodyparser": "4.3.0",
 		"koa-favicon": "2.1.0",
-		"koa-json-body": "5.3.0",
 		"koa-logger": "3.2.1",
 		"koa-mount": "4.0.0",
 		"koa-send": "5.0.1",
@@ -196,7 +196,8 @@
 	},
 	"devDependencies": {
 		"@redocly/openapi-core": "1.0.0-beta.123",
-		"@types/bcryptjs": "2.4.2",
+		"@types/bcryptjs": "2.4.6",
+		"@types/co-body": "6.1.3",
 		"@types/dateformat": "3.0.1",
 		"@types/double-ended-queue": "2.1.2",
 		"@types/escape-regexp": "0.0.1",
