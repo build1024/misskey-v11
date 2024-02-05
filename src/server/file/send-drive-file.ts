@@ -10,7 +10,6 @@ import { InternalStorage } from '../../services/drive/internal-storage';
 import { downloadUrl } from '../../misc/download-url';
 import { detectType } from '../../misc/get-file-info';
 import { convertToJpeg, convertToPngOrJpeg } from '../../services/drive/image-processor';
-import { GenerateVideoThumbnail } from '../../services/drive/generate-video-thumbnail';
 import { StatusError } from '../../misc/fetch';
 
 const assets = `${__dirname}/../../server/file/assets/`;
@@ -61,8 +60,6 @@ export default async function(ctx: Koa.Context) {
 							return await convertToJpeg(path, 498, 280);
 						} else if (['image/png'].includes(mime)) {
 							return await convertToPngOrJpeg(path, 498, 280);
-						} else if (mime.startsWith('video/')) {
-							return await GenerateVideoThumbnail(path);
 						}
 					}
 

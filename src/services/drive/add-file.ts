@@ -5,7 +5,6 @@ import { v4 as uuid } from 'uuid';
 import { publishMainStream, publishDriveStream } from '../stream';
 import { deleteFile } from './delete-file';
 import { fetchMeta } from '../../misc/fetch-meta';
-import { generateVideoThumbnail } from './generate-video-thumbnail';
 import { driveLogger } from './logger';
 import * as sharp from 'sharp';
 import { IImage, convertSharpToJpeg, convertSharpToWebp, convertSharpToPng, convertSharpToPngOrJpeg } from './image-processor';
@@ -150,15 +149,6 @@ async function save(file: DriveFile, path: string, name: string, type: string, h
  * @param generateWeb Generate webpublic or not
  */
  export async function generateAlts(path: string, type: string, generateWeb: boolean) {
-	// video
-	if (type.startsWith('video/')) {
-		const thumbnail = await generateVideoThumbnail(path);
-		return {
-			webpublic: null,
-			thumbnail,
-		};
-	}
-
 	// unsupported image
 	if (!['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'].includes(type)) {
 		return {
@@ -283,7 +273,6 @@ function getExt(name?: string, type?: string) {
 		if (type === 'image/webp') ext = '.webp';
 		if (type === 'image/apng') ext = '.apng';
 		if (type === 'image/vnd.mozilla.apng') ext = '.apng';
-		if (type === 'video/mp4') ext = '.mp4';
 	}
 
 	return ext;

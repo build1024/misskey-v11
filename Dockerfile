@@ -34,7 +34,7 @@ ENV NODE_ENV=production
 WORKDIR /misskey
 
 # Install runtime dependencies
-RUN apk add --no-cache tini ffmpeg
+RUN apk add --no-cache tini
 RUN corepack enable pnpm
 
 # Add local user
