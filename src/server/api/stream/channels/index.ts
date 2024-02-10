@@ -11,8 +11,6 @@ import messaging from './messaging';
 import messagingIndex from './messaging-index';
 import drive from './drive';
 import hashtag from './hashtag';
-import apLog from './ap-log';
-import admin from './admin';
 
 export default {
 	main,
@@ -28,6 +26,4 @@ export default {
 	messagingIndex,
 	drive,
 	hashtag,
-	apLog,
-	admin
 };
