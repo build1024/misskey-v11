@@ -10,11 +10,9 @@ services:
       - db
       - redis
 #      - es
-    ports:
-      - "127.0.0.1:3000:3000"
     networks:
       - internal_network
-      - external_network
+      - shared
     volumes:
       - ./files:/misskey/files
       - ./.config:/misskey/.config
@@ -52,4 +50,5 @@ services:
 networks:
   internal_network:
     internal: true
-  external_network:
+  shared:
+    external: true
