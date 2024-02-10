@@ -3,6 +3,9 @@ version: "3"
 services:
   web:
     build: .
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile.dev # debug
     image: misskey-v11-app
     container_name: misskey_v11_app
     restart: always
