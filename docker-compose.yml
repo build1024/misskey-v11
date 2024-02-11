@@ -23,7 +23,7 @@ services:
   redis:
     restart: always
     container_name: misskey_v11_redis
-    image: redis:7.0-alpine
+    image: redis:7.2.4-alpine3.19
     networks:
       - internal_network
     volumes:
@@ -32,7 +32,7 @@ services:
   db:
     restart: always
     container_name: misskey_v11_db
-    image: postgres:15.4-alpine3.18
+    image: postgres:15.5-alpine3.19
     networks:
       - internal_network
     env_file:
