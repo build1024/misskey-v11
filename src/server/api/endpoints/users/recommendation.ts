@@ -50,7 +50,6 @@ export default define(meta, async (ps, me) => {
 
 	generateMuteQueryForUsers(query, me);
 	generateBlockQueryForUsers(query, me);
-	generateBlockedUserQuery(query, me);
 
 	const followingQuery = Followings.createQueryBuilder('following')
 		.select('following.followeeId')
