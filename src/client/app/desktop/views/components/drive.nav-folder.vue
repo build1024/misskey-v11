@@ -46,8 +46,8 @@ export default Vue.extend({
 			}
 
 			const isFile = e.dataTransfer.items[0].kind == 'file';
-			const isDriveFile = e.dataTransfer.types[0] == 'mk_drive_file';
-			const isDriveFolder = e.dataTransfer.types[0] == 'mk_drive_folder';
+			const isDriveFile = e.dataTransfer.types.includes('mk_drive_file');
+			const isDriveFolder = e.dataTransfer.types.includes('mk_drive_folder');
 
 			if (isFile || isDriveFile || isDriveFolder) {
 				e.dataTransfer.dropEffect = e.dataTransfer.effectAllowed == 'all' ? 'copy' : 'move';
