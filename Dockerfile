@@ -27,7 +27,6 @@ FROM builder-base AS builder-prod
 RUN corepack enable pnpm
 RUN pnpm i --frozen-lockfile
 
-#########################################
 FROM node:20.11.0-alpine3.19 AS runner
 ENV NODE_ENV=production
 
